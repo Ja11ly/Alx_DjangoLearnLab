@@ -20,11 +20,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-<<<<<<< HEAD
+
 SECRET_KEY = 'django-insecure-k$4x6*-m=(p!qojs3(0)irz^wj$se$3(-qudyk1blxlwv0d82-'
-=======
-SECRET_KEY = 'django-insecure-e#a1yil1d-2b9x%jj)#rh%6-h=s!5#s_mr4n1vfc^or#0krb2j'
->>>>>>> bdea781 (Initial Django setup for ALX: LibraryProject)
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bookshelf',
 ]
 
 MIDDLEWARE = [
