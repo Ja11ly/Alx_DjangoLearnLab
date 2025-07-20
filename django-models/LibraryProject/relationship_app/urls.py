@@ -4,6 +4,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 from . import views
 from .views import admin_view
 from .views import librarian_view
+from .views import member_view
+
 
 urlpatterns = [
     path('books/', list_books, name='list_books'),
@@ -13,5 +15,6 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('admin-only/', admin_view, name='admin_view'),
     path('librarian/', librarian_view, name='librarian_view'),
+    path('member/', member_view, name='member_view'),
 
 ]
