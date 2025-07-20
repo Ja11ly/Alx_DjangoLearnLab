@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import DetailView
 from .models import Book
+from .models import Library
 
 # Class-based view to display library details
 class LibraryDetailView(DetailView):
