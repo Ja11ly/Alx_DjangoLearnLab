@@ -145,6 +145,8 @@ SESSION_COOKIE_SECURE = True
 
 # Enable secure HTTPS redirect
 SECURE_SSL_REDIRECT = True
+# Trust X-Forwarded-Proto header from proxy (used by Heroku, Nginx, etc.)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # HTTP Strict Transport Security (HSTS)
 SECURE_HSTS_SECONDS = 31536000
