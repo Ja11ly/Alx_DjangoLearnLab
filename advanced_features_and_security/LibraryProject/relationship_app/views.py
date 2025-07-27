@@ -119,4 +119,16 @@ def delete_book(request, pk):
         return redirect('book_list')
     return render(request, 'relationship_app/book_confirm_delete.html', {'book': book})
 
+@permission_required('bookshelf.can_create', raise_exception=True)
+def create_book(request):
+   if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('list_books')  # update this to your actual redirect target
+    else:
+        form = BookForm()
+    return render(request, 'bookshelf/create_book.html', {'form': form})    
+
+
 
