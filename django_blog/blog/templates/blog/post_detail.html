@@ -1,3 +1,4 @@
+
 <h1>{{ object.title }}</h1>
 <p>by {{ object.author }} on {{ object.published_date }}</p>
 <p>{{ object.content }}</p>
@@ -8,3 +9,21 @@
 {% endif %}
 
 <a href="{% url 'post-list' %}">Back to all posts</a>
+
+<h3>Comments</h3>
+{% for comment in post.comments.all %}
+    <p><strong>{{ comment.author.username }}</strong>: {{ comment.content }}</p>
+    {% if user == comment.author %}
+        <a href="{% url 'comment-update' comment.id %}">Edit</a>
+        <a href="{% url 'comment-delete' comment.id %}">Delete</a>
+    {% endif %}
+{% endfor %}
+
+{% if user.is_authenticated %}
+    <h4>Add a comment</h4>
+    <form method="post" action="{% url 'comment-create' post.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Post</button>
+    </form>
+{% endif %}
