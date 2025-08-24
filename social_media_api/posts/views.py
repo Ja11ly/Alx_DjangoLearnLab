@@ -10,7 +10,7 @@ class FeedView(generics.ListAPIView):
         user = self.request.user
         following_users = user.following.all()
         following_ids = user.following.values_list('id', flat=True)
-        return Post.objects.filter(author__in=following_ids).order_by('-created_at')
+        return Post.objects.filter(author__in=following_users).order_by('-created_at')
 
 # Custom permission to allow only owners to edit/delete
 class IsOwnerOrReadOnly(permissions.BasePermission):
