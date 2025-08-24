@@ -2,6 +2,16 @@ from rest_framework import viewsets, permissions
 from .models import Post, Comment
 from .serializers import PostSerializer, CommentSerializer
 
+class FeedView(generics.ListAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        # Posts by people I follow (optionally include my own posts too)
+        following_ids = user.following.values_list('id', flat=True)
+        return Post.objects.filter(author__in=following_ids).order_by('-created_at')
+
 # Custom permission to allow only owners to edit/delete
 class IsOwnerOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
